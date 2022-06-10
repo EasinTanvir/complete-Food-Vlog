@@ -1,0 +1,33 @@
+.head {
+    margin: 42px auto;
+    width: 500px;
+    background-color: crimson;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 9px 9px 9px black;
+
+    
+}
+
+
+.image {
+    text-align: center;
+    
+}
+.image img {
+    border-radius: 50%;
+   
+    
+   
+}
+
+.text {
+    color: white;
+    overflow: hidden;
+}
+
+.text h1{
+    
+   text-align: center;  
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
