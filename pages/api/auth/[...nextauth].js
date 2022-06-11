@@ -4,6 +4,12 @@ import helper from '../../../Components/Helper/helper';
 import { ComparePassword } from '../../../Components/Helper/auth';
 
 export default NextAuth({
+
+    
+    session: {
+        strategy: "jwt"
+    },
+
     providers:[
 
         CredentialsProvider({
@@ -34,5 +40,8 @@ export default NextAuth({
 
             }
         })
-    ]
+    ],
+    callbacks: {
+    },
+    secret: process.env.JWT_SECRET,
 })
