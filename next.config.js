@@ -19,6 +19,8 @@ return {
     password:'tanvir',
     cluster:'cluster0',
     database:'pro1resvlog',    
+    NEXTAUTH_URL:'https://complete-food-vlog.vercel.app'
+  
   }
 }
 

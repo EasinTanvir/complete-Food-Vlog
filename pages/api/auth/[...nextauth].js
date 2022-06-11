@@ -10,13 +10,19 @@ export default NextAuth({
         strategy: "jwt"
     },
 
-    providers:[
+     
+   
+
+    providers:[      
 
         CredentialsProvider({
+
+            
+
             async authorize(credentials){
-                const client = await helper();
-                const db = client.db()
-                const user = await db.collection('signin').findOne({email:credentials.email})
+                const client = await helper();                
+                const usercollection =client.db().collection('signin')
+                const user = await usercollection.findOne({email:credentials.email})
 
                 if(!user){
                     client.close()
@@ -31,17 +37,15 @@ export default NextAuth({
                     throw new Error('password invalid')
                 }
 
-                client.close()             
-
+                       
+                client.close()  
                 return {email:user.email}
                 
-                   
+                
 
 
             }
         })
-    ],
-    callbacks: {
-    },
-    secret: process.env.JWT_SECRET,
+    ],secret: process.env. NEXTAUTH_URL
+   
 })

@@ -7,13 +7,13 @@ import { ExtraContext } from "../Context/Context"
 
 function MyApp({ Component, pageProps:{session,...pageProps} }) {
   return (
-    <ExtraContext>
-    <SessionProvider session={session}>
+    <SessionProvider session={session}  refetchInterval={5 * 60}>
+    <ExtraContext>   
     <Layout>
        <Component {...pageProps} />            
-    </Layout>
-    </SessionProvider>
+    </Layout>   
     </ExtraContext>
+    </SessionProvider>
      )
 }
 
