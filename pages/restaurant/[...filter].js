@@ -1,4 +1,5 @@
 import React from 'react'
+import { getSession } from 'next-auth/react'
 import { FilterData } from '../../Components/DataBase/FireBase'
 import Error from '../../Components/Error/Error'
 import MyError from '../../Components/Error/MyError'
@@ -25,6 +26,16 @@ export default function FilterEvents(props) {
 
 
 export async function getServerSideProps(context){
+
+  const text = await getSession({req:context.req})
+  if(!text){
+    return{
+      redirect:{
+        destination:'/',
+        parmanent:false
+      }
+    }
+  }
 
   const {params} = context
 

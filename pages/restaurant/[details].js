@@ -1,3 +1,4 @@
+import {getSession} from 'next-auth/react'
 import Comment from "../../Components/Comment/Comment"
 import GetComment from "../../Components/Comment/GetComment"
 import { AllPost, FireDetails } from "../../Components/DataBase/FireBase"
@@ -20,7 +21,20 @@ export default function PostDetails(props) {
 }
 
 
-export async function getStaticProps(constext){
+export async function getServerSideProps(constext){
+
+  const text = await getSession({req:constext.req})
+
+  if(!text){
+
+    return {
+      redirect:{
+        destination:'/',
+        parmanent:false
+      }
+    }
+
+  }
 
   const {params} = constext;
   const userId = params.details;
@@ -43,16 +57,16 @@ export async function getStaticProps(constext){
 
 }
 
-export async function getStaticPaths(){
+// export async function getStaticPaths(){
 
-  const allpost = await AllPost()
-  const userId = allpost.map((event)=>({params:{details:event.id}}))
+//   const allpost = await AllPost()
+//   const userId = allpost.map((event)=>({params:{details:event.id}}))
   
 
 
-  return {
-    paths:userId,
-    fallback:'blocking'
-  }
+//   return {
+//     paths:userId,
+//     fallback:'blocking'
+//   }
 
-}
+// }
